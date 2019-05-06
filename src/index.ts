@@ -1,7 +1,6 @@
 import { ICustomState, IEmailVerification } from './types';
 import koa from 'koa';
 import koaBody from 'koa-body';
-import middleware from './middleware'
 import Router from 'koa-router';
 import route from 'koa-route';
 import log4js from 'log4js';
@@ -61,13 +60,18 @@ app.use(route.post('/api/notification', (ctx)=> {
     ctx.throw(401);
   }
 
-  let {targetTokens} = ctx;
+  let {targetTokens} = ctx.request.body;
   if (targetTokens === undefined) {
-    targetTokens = Object.keys(socketDict);
+    targetTokens = [];
   }
+  // console.log(targetTokens);
+  // if (targetTokens === undefined) {
+  //   targetTokens = Object.keys(socketDict);
+  // }
   let sentCount = 0;
   targetTokens.forEach(targetToken => {
     if(socketDict[targetToken]) {
+      // console.log('sending message to ', targetToken);
       socketDict[targetToken].sockets = socketDict[targetToken].sockets.filter(socket=>socket.readyState === socket.OPEN || socket.readyState === socket.CONNECTING);
       socketDict[targetToken].sockets.forEach(socket=>{
         if (socket.readyState === socket.OPEN) {
