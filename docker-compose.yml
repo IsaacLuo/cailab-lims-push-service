@@ -1,0 +1,11 @@
+version: '3.0'
+services:
+  api:
+    container_name: cailab-lims-push-service
+    build: ./api
+    working_dir: /app
+    command: ['yarn', 'run', 'production']
+    restart: always
+    volumes:
+      - /shared/cailab-auth/logs:/app/logs
+    network_mode: bridge

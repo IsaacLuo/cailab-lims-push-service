@@ -1,0 +1,42 @@
+{
+  "name": "cailab-lims-push-service",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/koa": "^2.0.48",
+    "@types/koa-router": "^7.0.40",
+    "@types/koa-websocket": "^5.0.3",
+    "@types/mongoose": "^5.3.24",
+    "@types/nodemailer": "^4.6.7",
+    "@types/sharp": "^0.22.1",
+    "cross-env": "^5.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.7.0",
+    "koa-body": "^4.1.0",
+    "koa-cors": "^0.0.16",
+    "koa-jwt": "^3.5.1",
+    "koa-route": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "koa-websocket": "^5.0.1",
+    "log4js": "^4.1.0",
+    "mongoose": "^5.4.20",
+    "nodemailer": "^6.1.1",
+    "sharp": "^0.22.1",
+    "uuid": "^3.3.2"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "cross-env NODE_ENV=production tsc",
+    "production": "cross-env NODE_ENV=production node build/src/index.js",
+    "dev": "node ./node_modules/nodemon/bin/nodemon.js",
+    "debug": "node ./node_modules/nodemon/bin/nodemon.js --inspect",
+    "importDB": "ts-node src/script/importDB.ts",
+    "testScript": "ts-node src/script/test.ts",
+    "shell": "ts-node"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.1"
+  }
+}
