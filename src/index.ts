@@ -42,11 +42,14 @@ app.ws.use(route.all('/ws/notification', (ctx:MiddlewareContext)=> {
     socketDict[token] = {sockets:[]};
   }
   socketDict[token].sockets.push(ctx.websocket);
-  console.log('token=', token);
+  // console.log('token=', token);
   ctx.websocket.on('message', function(message) {
     // do something with the message from client
-      console.log(message);
-      ctx.websocket.send(`you sent ${message}`);
+      // console.log(message);
+      ctx.websocket.send(JSON.stringify({
+        ctype: 'hearbeat',
+        message,
+      }));
   });
 }));
 
