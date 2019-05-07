@@ -47,7 +47,7 @@ app.ws.use(route.all('/ws/notification', (ctx:MiddlewareContext)=> {
     // do something with the message from client
       // console.log(message);
       ctx.websocket.send(JSON.stringify({
-        ctype: 'hearbeat',
+        ctype: 'heartbeat',
         message,
       }));
   });
